@@ -19,7 +19,7 @@ define Package/wireshark
   SECTION:=net
   CATEGORY:=Network
   TITLE:=wireshark
-  DEPENDS:=+libpcap
+  DEPENDS:=+libpcap +libgcrypt
 endef
 
 #PKG_FIXUP:=autoreconf
