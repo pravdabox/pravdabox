@@ -22,7 +22,7 @@ define Package/wireshark
   DEPENDS:=+libpcap
 endef
 
-PKG_FIXUP:=autoreconf
+#PKG_FIXUP:=autoreconf
 
 define Package/wireshark/description
  wireshark captures network traffic
@@ -32,9 +32,9 @@ endef
 #	echo $(TARGET_CONFIGURE_OPTS) && cd $(PKG_BUILD_DIR) && CFLAGS="$(TARGET_CFLAGS)" autoreconf -fi && ./configure $(TARGET_CONFIGURE_OPTS)
 #endef
 
-#define Build/Configure
-#	cd $(PKG_BUILD_DIR) && CFLAGS="$(TARGET_CFLAGS)" autoreconf -fi && ./configure $(TARGET_CONFIGURE_OPTS)
-#endef
+define Build/Configure
+	cd $(PKG_BUILD_DIR) && CFLAGS="$(TARGET_CFLAGS)" ./autogen.sh --host=$(ARCH) --target=$(GNU_TARGET_NAME) $(TARGET_CONFIGURE_OPTS) && ./configure
+endef
 
 define Build/Compile
 endef
