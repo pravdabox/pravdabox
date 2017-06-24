@@ -17,21 +17,23 @@ include $(INCLUDE_DIR)/package.mk
 
 define Package/driftnet
   SECTION:=net
-  CATEGORY:=network
+  CATEGORY:=Network
   TITLE:=Driftnet
   DEPENDS:=+libpcap
 endef
 
-define Package/driftnet/config
-	source "$(SOURCE)/Config.in"
-endef
+PKG_FIXUP:=autoreconf
 
 define Package/driftnet/description
  Driftnet watches network traffic and displays images
 endef
 
+#define Build/Configure
+#	echo $(TARGET_CONFIGURE_OPTS) && cd $(PKG_BUILD_DIR) && CFLAGS="$(TARGET_CFLAGS)" autoreconf -fi && ./configure $(TARGET_CONFIGURE_OPTS)
+#endef
+
 define Build/Configure
-	cd $(PKG_BUILD_DIR) && CFLAGS="$(TARGET_CFLAGS)" autoreconf -fi && ./configure
+	cd $(PKG_BUILD_DIR) && CFLAGS="$(TARGET_CFLAGS)" autoreconf -fi && ./configure $(TARGET_CONFIGURE_OPTS)
 endef
 
 define Build/Compile
@@ -39,7 +41,7 @@ endef
 
 define Package/driftnet/install
 	$(INSTALL_DIR) $(1)/usr/sbin
-	$(INSTALL_BIN) ./files/driftnet $(1)/usr/sbin/driftnet
+	$(INSTALL_BIN) ./src/driftnet $(1)/usr/sbin/driftnet
 endef
 
 $(eval $(call BuildPackage,driftnet))
