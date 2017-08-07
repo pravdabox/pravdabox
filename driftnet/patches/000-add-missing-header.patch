@@ -1,0 +1,10 @@
+--- a/src/pid.c
++++ b/src/pid.c
+@@ -21,6 +21,7 @@
+ #include <stdlib.h> /* On many systems (Darwin...), stdio.h is a prerequisite. */
+ #include <string.h>
+ #include <unistd.h>
++#include <sys/stat.h>
+ 
+ #include "log.h"
+ 
