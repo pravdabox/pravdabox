@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=driftnet
-PKG_VERSION:=2017-06-24-xyz
+PKG_VERSION:=2017-08-08-7602b53
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
@@ -43,7 +43,7 @@ endef
 
 define Package/driftnet/install
 	$(INSTALL_DIR) $(1)/usr/sbin
-	$(INSTALL_BIN) ./src/driftnet $(1)/usr/sbin/driftnet
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/src/driftnet $(1)/usr/sbin/driftnet
 endef
 
 $(eval $(call BuildPackage,driftnet))
