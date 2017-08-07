@@ -19,7 +19,7 @@ define Package/driftnet
   SECTION:=net
   CATEGORY:=Network
   TITLE:=Driftnet
-  DEPENDS:=+libpcap
+  DEPENDS:=+libpcap +libpthread
 endef
 
 PKG_FIXUP:=autoreconf
