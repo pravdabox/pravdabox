@@ -32,7 +32,7 @@ define Package/wireshark/description
 endef
 
 define Host/Configure
-	cd $(HOST_BUILD_DIR) && ./autogen.sh
+	cd $(HOST_BUILD_DIR) && ./autogen.sh && ./configure --enable-wireshark=no --enable-tshark=yes --enable-editcap=no --enable-capinfos=no --enable-captype=no --enable-mergecap=no --enable-reordercap=no --enable-text2pcap=no --enable-dftest=no --enable-randpkt=no --enable-rawshark=no --enable-sharkd=no --enable-androiddump=no --enable-randpktdump=no --enable-udpdump=no --with-pcap=$(STAGING_DIR)/usr
 endef
 
 define Host/Compile
