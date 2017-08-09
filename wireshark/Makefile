@@ -31,6 +31,10 @@ define Package/wireshark/description
  wireshark captures network traffic
 endef
 
+WIRESHARK_MAKEOPTS = $(TARGET_CONFIGURE_OPTS) \
+	CFLAGS="$(TARGET_CFLAGS) -I$(PKG_BUILD_DIR) -I$(STAGING_DIR)/usr/include" \
+	STAGING_DIR_HOST=$(STAGING_DIR_HOST)
+
 define Host/Configure
 	cd $(HOST_BUILD_DIR) && ./autogen.sh && ./configure --enable-wireshark=no --enable-tshark=yes --enable-editcap=no --enable-capinfos=no --enable-captype=no --enable-mergecap=no --enable-reordercap=no --enable-text2pcap=no --enable-dftest=no --enable-randpkt=no --enable-rawshark=no --enable-sharkd=no --enable-androiddump=no --enable-randpktdump=no --enable-udpdump=no --with-pcap=no
 endef
@@ -49,7 +53,7 @@ define Build/Configure
 endef
 
 define Build/Compile
-	STAGING_DIR_HOST=$(STAGING_DIR_HOST) $(call Build/Compile/Default)
+	$(MAKE) -C $(PKG_BUILD_DIR) $(WIRESHARK_MAKEOPTS)
 endef
 
 define Package/wireshark/install
