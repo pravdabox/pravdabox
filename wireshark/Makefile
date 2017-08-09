@@ -31,16 +31,9 @@ define Package/wireshark/description
  wireshark captures network traffic
 endef
 
-#define Build/Configure
-#	echo $(TARGET_CONFIGURE_OPTS) && cd $(PKG_BUILD_DIR) && CFLAGS="$(TARGET_CFLAGS)" autoreconf -fi && ./configure $(TARGET_CONFIGURE_OPTS)
-#endef
-
-define Build/Configure
-	cd $(PKG_BUILD_DIR) && CFLAGS="$(TARGET_CFLAGS)" ./autogen.sh --host=$(ARCH) --target=$(GNU_TARGET_NAME) $(TARGET_CONFIGURE_OPTS) && ./configure --host=$(ARCH) --target=$(GNU_TARGET_NAME) $(TARGET_CONFIGURE_OPTS) --enable-wireshark=no --enable-tshark=yes --enable-editcap=no --enable-capinfos=no --enable-captype=no --enable-mergecap=no --enable-reordercap=no --enable-text2pcap=no --enable-dftest=no --enable-randpkt=no --enable-rawshark=no --enable-sharkd=no --enable-androiddump=no --enable-randpktdump=no --enable-udpdump=no --with-pcap=$(STAGING_DIR)/usr
+define Host/Configure
+	cd $(HOST_BUILD_DIR) && ./autogen.sh
 endef
-
-#define Build/Compile
-#endef
 
 define Host/Compile
 	$(MAKE) -C $(HOST_BUILD_DIR)/tools/lemon
@@ -50,6 +43,13 @@ define Host/Install
 	$(INSTALL_DIR) $(STAGING_DIR_HOSTPKG)/bin
 	$(CP) $(HOST_BUILD_DIR)/tools/lemon $(STAGING_DIR_HOSTPKG)/bin/lemon
 endef
+
+define Build/Configure
+	cd $(PKG_BUILD_DIR) && CFLAGS="$(TARGET_CFLAGS)" ./autogen.sh --host=$(ARCH) --target=$(GNU_TARGET_NAME) $(TARGET_CONFIGURE_OPTS) && ./configure --host=$(ARCH) --target=$(GNU_TARGET_NAME) $(TARGET_CONFIGURE_OPTS) --enable-wireshark=no --enable-tshark=yes --enable-editcap=no --enable-capinfos=no --enable-captype=no --enable-mergecap=no --enable-reordercap=no --enable-text2pcap=no --enable-dftest=no --enable-randpkt=no --enable-rawshark=no --enable-sharkd=no --enable-androiddump=no --enable-randpktdump=no --enable-udpdump=no --with-pcap=$(STAGING_DIR)/usr
+endef
+
+#define Build/Compile
+#endef
 
 define Package/wireshark/install
 	$(INSTALL_DIR) $(1)/usr/sbin
