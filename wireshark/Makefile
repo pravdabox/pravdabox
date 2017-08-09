@@ -41,7 +41,7 @@ endef
 
 define Host/Install
 	$(INSTALL_DIR) $(STAGING_DIR_HOST)/bin
-	$(CP) $(HOST_BUILD_DIR)/tools/lemon $(STAGING_DIR_HOST)/bin/lemon
+	$(CP) $(HOST_BUILD_DIR)/tools/lemon $(STAGING_DIR_HOST)/bin/
 endef
 
 define Build/Configure
