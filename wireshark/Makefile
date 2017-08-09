@@ -14,6 +14,7 @@ PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 CC="$(TARGET_CC)"
 
 include $(INCLUDE_DIR)/package.mk
+include $(INCLUDE_DIR)/host-build.mk
 
 define Package/wireshark
   SECTION:=net
@@ -23,6 +24,8 @@ define Package/wireshark
 endef
 
 #PKG_FIXUP:=autoreconf
+
+PKG_BUILD_DEPENDS += wireshark/host
 
 define Package/wireshark/description
  wireshark captures network traffic
@@ -39,9 +42,19 @@ endef
 #define Build/Compile
 #endef
 
+define Host/Compile
+	$(MAKE) -C $(HOST_BUILD_DIR)/tools/lemon
+endef
+
+define Host/Install
+	$(INSTALL_DIR) $(STAGING_DIR_HOSTPKG)/bin
+	$(CP) $(HOST_BUILD_DIR)/tools/lemon $(STAGING_DIR_HOSTPKG)/bin/lemon
+endef
+
 define Package/wireshark/install
 	$(INSTALL_DIR) $(1)/usr/sbin
 	$(INSTALL_BIN) ./src/wireshark $(1)/usr/sbin/wireshark
 endef
 
+$(eval $(call HostBuild))
 $(eval $(call BuildPackage,wireshark))
