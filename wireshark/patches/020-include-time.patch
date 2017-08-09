@@ -1,0 +1,10 @@
+--- a/epan/ftypes/ftypes.h
++++ b/epan/ftypes/ftypes.h
+@@ -25,6 +25,7 @@
+ #define __FTYPES_H__
+ 
+ #include <glib.h>
++#include <time.h>
+ #include "../wmem/wmem.h"
+ #include "ws_symbol_export.h"
+ 
