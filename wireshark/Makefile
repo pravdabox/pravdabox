@@ -45,7 +45,7 @@ endef
 
 define Host/Install
 	$(INSTALL_DIR) $(STAGING_DIR_HOST)/bin
-	$(CP) $(HOST_BUILD_DIR)/tools/lemon $(STAGING_DIR_HOST)/bin/
+	$(CP) $(HOST_BUILD_DIR)/tools/lemon/lemon $(STAGING_DIR_HOST)/bin/lemon
 endef
 
 define Build/Configure
@@ -53,7 +53,7 @@ define Build/Configure
 endef
 
 define Build/Compile
-	$(MAKE) -C $(PKG_BUILD_DIR) $(WIRESHARK_MAKEOPTS)
+	$(MAKE) -C $(PKG_BUILD_DIR) STAGING_DIR_HOST=$(STAGING_DIR_HOST)
 endef
 
 define Package/wireshark/install
