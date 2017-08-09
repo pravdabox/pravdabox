@@ -40,8 +40,8 @@ define Host/Compile
 endef
 
 define Host/Install
-	$(INSTALL_DIR) $(STAGING_DIR_HOSTPKG)/bin
-	$(CP) $(HOST_BUILD_DIR)/tools/lemon $(STAGING_DIR_HOSTPKG)/bin/lemon
+	$(INSTALL_DIR) $(STAGING_DIR_HOST)/bin
+	$(CP) $(HOST_BUILD_DIR)/tools/lemon $(STAGING_DIR_HOST)/bin/lemon
 endef
 
 define Build/Configure
