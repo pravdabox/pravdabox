@@ -27,6 +27,8 @@ endef
 
 PKG_BUILD_DEPENDS += wireshark/host
 
+TARGET_CFLAGS += -D_GNU_SOURCE
+
 define Package/wireshark/description
  wireshark captures network traffic
 endef
