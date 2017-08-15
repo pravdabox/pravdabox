@@ -101,6 +101,7 @@ define Build/Compile
 	touch $(PKG_BUILD_DIR)/version.h
 	$(MAKE) -j9 -C $(PKG_BUILD_DIR)/wsutil
 	$(MAKE) -j9 -C $(PKG_BUILD_DIR)/wiretap
+	$(MAKE) -j9 -C $(PKG_BUILD_DIR)/caputils
 	$(MAKE) -j9 -C $(PKG_BUILD_DIR) dumpcap STAGING_DIR_HOST=$(STAGING_DIR_HOST)
 endef
 
