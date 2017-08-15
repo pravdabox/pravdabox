@@ -14,13 +14,14 @@ PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 CC="$(TARGET_CC)"
 
 include $(INCLUDE_DIR)/package.mk
+include $(INCLUDE_DIR)/nls.mk
 include $(INCLUDE_DIR)/host-build.mk
 
 define Package/wireshark
   SECTION:=net
   CATEGORY:=Network
   TITLE:=wireshark
-  DEPENDS:=+libpcap +libgcrypt +glib2
+  DEPENDS:=+libpcap +libgcrypt +glib2 +libiconv-full
 endef
 
 #PKG_FIXUP:=autoreconf
@@ -58,6 +59,8 @@ define Host/Configure
 	--enable-randpktdump=no \
 	--enable-udpdump=no \
 	--with-pcap=no
+	--with-lua=no
+	--with-plugins=no
 endef
 
 define Host/Compile
@@ -91,15 +94,18 @@ define Build/Configure
 	--enable-udpdump=no \
 	--with-pcap=$(STAGING_DIR)/usr \
 	--with-lua=no
+	--with-plugins=no
 endef
 
 define Build/Compile
-	$(MAKE) -j9 -C $(PKG_BUILD_DIR) STAGING_DIR_HOST=$(STAGING_DIR_HOST)
+	$(MAKE) -j9 -C $(PKG_BUILD_DIR)/wsutil
+	$(MAKE) -j9 -C $(PKG_BUILD_DIR)/wiretap
+	$(MAKE) -j9 -C $(PKG_BUILD_DIR) dumpcap STAGING_DIR_HOST=$(STAGING_DIR_HOST)
 endef
 
 define Package/wireshark/install
 	$(INSTALL_DIR) $(1)/usr/sbin
-	$(INSTALL_BIN) ./src/wireshark $(1)/usr/sbin/wireshark
+	$(INSTALL_BIN) ./src/tshark $(1)/usr/sbin/tshark
 endef
 
 $(eval $(call HostBuild))
