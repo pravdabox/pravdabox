@@ -109,7 +109,7 @@ endef
 
 define Package/wireshark/install
 	$(INSTALL_DIR) $(1)/usr/sbin
-	$(INSTALL_BIN) ./src/tshark $(1)/usr/sbin/tshark
+	$(INSTALL_BIN) ./dumpcap $(1)/usr/sbin/dumpcap
 endef
 
 $(eval $(call HostBuild))
