@@ -102,6 +102,7 @@ define Build/Compile
 	$(MAKE) -j9 -C $(PKG_BUILD_DIR)/wsutil
 	$(MAKE) -j9 -C $(PKG_BUILD_DIR)/wiretap
 	$(MAKE) -j9 -C $(PKG_BUILD_DIR)/caputils
+	$(MAKE) -j9 -C $(PKG_BUILD_DIR)/ui
 	$(MAKE) -j9 -C $(PKG_BUILD_DIR) dumpcap STAGING_DIR_HOST=$(STAGING_DIR_HOST)
 endef
 
