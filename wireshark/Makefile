@@ -107,6 +107,7 @@ define Build/Compile
 	$(MAKE) -j9 -C $(PKG_BUILD_DIR)/writecap
 	$(MAKE) -j9 -C $(PKG_BUILD_DIR) dumpcap
 	$(MAKE) -j9 -C $(PKG_BUILD_DIR)/capchild
+	$(MAKE) -j9 -C $(PKG_BUILD_DIR)/epan
 	$(MAKE) -j9 -C $(PKG_BUILD_DIR) tshark
 endef
 
