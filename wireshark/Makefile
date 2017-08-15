@@ -27,15 +27,37 @@ endef
 
 PKG_BUILD_DEPENDS += wireshark/host
 
-TARGET_CFLAGS += -D_GNU_SOURCE -fPIC
-TARGET_LDFLAGS += -ldl
+TARGET_CFLAGS += -D_GNU_SOURCE -fPIC \
+	-I$(STAGING_DIR)/usr/lib/libintl/include \
+	-I$(STAGING_DIR)/usr/libiconv/include \
+	-I$(STAGING_DIR)/usr/include/pcap
+
+TARGET_LDFLAGS += -ldl \
+	-L$(STAGING_DIR)/usr/lib/libintl/lib \
+	-L$(STAGING_DIR)/usr/lib/libiconv/lib
 
 define Package/wireshark/description
  wireshark captures network traffic
 endef
 
 define Host/Configure
-	cd $(HOST_BUILD_DIR) && ./autogen.sh && ./configure --enable-wireshark=no --enable-tshark=yes --enable-editcap=no --enable-capinfos=no --enable-captype=no --enable-mergecap=no --enable-reordercap=no --enable-text2pcap=no --enable-dftest=no --enable-randpkt=no --enable-rawshark=no --enable-sharkd=no --enable-androiddump=no --enable-randpktdump=no --enable-udpdump=no --with-pcap=no
+	cd $(HOST_BUILD_DIR) && ./autogen.sh && ./configure \
+	--enable-wireshark=no \
+	--enable-tshark=yes \
+	--enable-editcap=no \
+	--enable-capinfos=no \
+	--enable-captype=no \
+	--enable-mergecap=no \
+	--enable-reordercap=no \
+	--enable-text2pcap=no \
+	--enable-dftest=no \
+	--enable-randpkt=no \
+	--enable-rawshark=no \
+	--enable-sharkd=no \
+	--enable-androiddump=no \
+	--enable-randpktdump=no \
+	--enable-udpdump=no \
+	--with-pcap=no
 endef
 
 define Host/Compile
@@ -48,7 +70,27 @@ define Host/Install
 endef
 
 define Build/Configure
-	cd $(PKG_BUILD_DIR) && CFLAGS="$(TARGET_CFLAGS)" LDFLAGS="$(TARGET_LDFLAGS)" ./autogen.sh --host=$(ARCH) --target=$(GNU_TARGET_NAME) $(TARGET_CONFIGURE_OPTS) && CFLAGS="$(TARGET_CFLAGS)" LDFLAGS="$(TARGET_LDFLAGS)" ./configure --host=$(ARCH) --target=$(GNU_TARGET_NAME) $(TARGET_CONFIGURE_OPTS) --enable-wireshark=no --enable-tshark=yes --enable-editcap=no --enable-capinfos=no --enable-captype=no --enable-mergecap=no --enable-reordercap=no --enable-text2pcap=no --enable-dftest=no --enable-randpkt=no --enable-rawshark=no --enable-sharkd=no --enable-androiddump=no --enable-randpktdump=no --enable-udpdump=no --with-pcap=$(STAGING_DIR)/usr --with-lua=no
+	cd $(PKG_BUILD_DIR) && CFLAGS="$(TARGET_CFLAGS)" LDFLAGS="$(TARGET_LDFLAGS)" ./autogen.sh \
+	--host=$(ARCH) --target=$(GNU_TARGET_NAME) $(TARGET_CONFIGURE_OPTS) \
+	&& CFLAGS="$(TARGET_CFLAGS)" LDFLAGS="$(TARGET_LDFLAGS)" ./configure \
+	--host=$(ARCH) --target=$(GNU_TARGET_NAME) $(TARGET_CONFIGURE_OPTS) \
+	--enable-wireshark=no \
+	--enable-tshark=yes \
+	--enable-editcap=no \
+	--enable-capinfos=no \
+	--enable-captype=no \
+	--enable-mergecap=no \
+	--enable-reordercap=no \
+	--enable-text2pcap=no \
+	--enable-dftest=no \
+	--enable-randpkt=no \
+	--enable-rawshark=no \
+	--enable-sharkd=no \
+	--enable-androiddump=no \
+	--enable-randpktdump=no \
+	--enable-udpdump=no \
+	--with-pcap=$(STAGING_DIR)/usr \
+	--with-lua=no
 endef
 
 define Build/Compile
