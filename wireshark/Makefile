@@ -104,7 +104,8 @@ define Build/Compile
 	$(MAKE) -j9 -C $(PKG_BUILD_DIR)/caputils
 	$(MAKE) -j9 -C $(PKG_BUILD_DIR)/ui
 	$(MAKE) -j9 -C $(PKG_BUILD_DIR)/writecap
-	$(MAKE) -j9 -C $(PKG_BUILD_DIR) dumpcap STAGING_DIR_HOST=$(STAGING_DIR_HOST)
+	$(MAKE) -j9 -C $(PKG_BUILD_DIR) dumpcap
+	$(MAKE) -j9 -C $(PKG_BUILD_DIR) tshark
 endef
 
 define Package/wireshark/install
