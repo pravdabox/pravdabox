@@ -58,8 +58,8 @@ define Host/Configure
 	--enable-androiddump=no \
 	--enable-randpktdump=no \
 	--enable-udpdump=no \
-	--with-pcap=no
-	--with-lua=no
+	--with-pcap=no \
+	--with-lua=no \
 	--with-plugins=no
 endef
 
@@ -93,7 +93,7 @@ define Build/Configure
 	--enable-randpktdump=no \
 	--enable-udpdump=no \
 	--with-pcap=$(STAGING_DIR)/usr \
-	--with-lua=no
+	--with-lua=no \
 	--with-plugins=no
 endef
 
