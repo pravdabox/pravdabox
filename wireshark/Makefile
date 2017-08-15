@@ -28,12 +28,12 @@ endef
 
 PKG_BUILD_DEPENDS += wireshark/host
 
-TARGET_CFLAGS += -D_GNU_SOURCE -fPIC -liconv \
+TARGET_CFLAGS += -D_GNU_SOURCE -fPIC \
 	-I$(STAGING_DIR)/usr/lib/libintl/include \
 	-I$(STAGING_DIR)/usr/libiconv/include \
 	-I$(STAGING_DIR)/usr/include/pcap
 
-TARGET_LDFLAGS += -ldl -liconv \
+TARGET_LDFLAGS += -ldl \
 	-L$(STAGING_DIR)/usr/lib/libintl/lib \
 	-L$(STAGING_DIR)/usr/lib/libiconv/lib
 
