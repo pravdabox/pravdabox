@@ -28,12 +28,12 @@ endef
 
 PKG_BUILD_DEPENDS += wireshark/host
 
-TARGET_CFLAGS += -D_GNU_SOURCE -fPIC \
+TARGET_CFLAGS += -D_GNU_SOURCE -fPIC -liconv \
 	-I$(STAGING_DIR)/usr/lib/libintl/include \
 	-I$(STAGING_DIR)/usr/libiconv/include \
 	-I$(STAGING_DIR)/usr/include/pcap
 
-TARGET_LDFLAGS += -ldl \
+TARGET_LDFLAGS += -ldl -liconv \
 	-L$(STAGING_DIR)/usr/lib/libintl/lib \
 	-L$(STAGING_DIR)/usr/lib/libiconv/lib
 
@@ -108,7 +108,7 @@ define Build/Compile
 	$(MAKE) -j9 -C $(PKG_BUILD_DIR) dumpcap
 	$(MAKE) -j9 -C $(PKG_BUILD_DIR)/capchild
 	$(MAKE) -j9 -C $(PKG_BUILD_DIR)/epan STAGING_DIR_HOST=$(STAGING_DIR_HOST)
-	$(MAKE) -j9 -C $(PKG_BUILD_DIR) tshark
+	$(MAKE) -j9 -C $(PKG_BUILD_DIR) tshark LIBS="$(STAGING_DIR)/usr/lib/libpcap.a $(ICONV_PREFIX)/lib/libiconv.a"
 endef
 
 define Package/wireshark/install
