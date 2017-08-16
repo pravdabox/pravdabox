@@ -99,6 +99,7 @@ define Build/Configure
 endef
 
 define Build/Compile
+	$(MAKE) -C $(PKG_BUILD_DIR)/tools/lemon CC_FOR_BUILD="$(HOSTCC)"
 	touch $(PKG_BUILD_DIR)/version.h
 	$(MAKE) -j9 -C $(PKG_BUILD_DIR)/wsutil
 	$(MAKE) -j9 -C $(PKG_BUILD_DIR)/wiretap
