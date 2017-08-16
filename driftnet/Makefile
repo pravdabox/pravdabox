@@ -24,6 +24,8 @@ endef
 
 PKG_FIXUP:=autoreconf
 
+TARGET_CFLAGS += -D_GNU_SOURCE -fPIC
+
 define Package/driftnet/description
  Driftnet watches network traffic and displays images
 endef
