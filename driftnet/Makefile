@@ -34,7 +34,7 @@ endef
 
 #cd $(PKG_BUILD_DIR) && CFLAGS="$(TARGET_CFLAGS)" autoreconf -fi && ./configure $(TARGET_CONFIGURE_OPTS)
 define Build/Configure
-	cd $(PKG_BUILD_DIR) && CFLAGS="$(TARGET_CFLAGS)" autoreconf -fi && ./configure --disable-display --host=$(ARCH) $(TARGET_CONFIGURE_OPTS)
+	cd $(PKG_BUILD_DIR) && CFLAGS="$(TARGET_CFLAGS)" autoreconf -fi && CFLAGS="$(TARGET_CFLAGS)" ./configure --disable-display --host=$(ARCH) $(TARGET_CONFIGURE_OPTS)
 endef
 
 define Build/Compile

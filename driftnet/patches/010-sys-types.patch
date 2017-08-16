@@ -1,0 +1,10 @@
+--- a/src/media/media.h
++++ b/src/media/media.h
+@@ -21,6 +21,7 @@
+ #define NMEDIATYPES 5
+ //struct connection;
+ 
++#include <sys/types.h>
+ #include "connection.h"
+ 
+ /*
