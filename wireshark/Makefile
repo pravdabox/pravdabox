@@ -84,6 +84,7 @@ endef
 define Package/wireshark/install
 	$(INSTALL_DIR) $(1)/usr/sbin
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/dumpcap $(1)/usr/sbin/dumpcap
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/tshark $(1)/usr/sbin/tshark
 endef
 
 $(eval $(call BuildPackage,wireshark))
