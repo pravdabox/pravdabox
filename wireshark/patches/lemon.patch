@@ -1,8 +1,8 @@
 diff --git a/tools/lemon/Makefile.am b/tools/lemon/Makefile.am
-index ff7569fbc0..c25c23a592 100644
+index ff7569fbc0..f14fbca877 100644
 --- a/tools/lemon/Makefile.am
 +++ b/tools/lemon/Makefile.am
-@@ -25,14 +25,13 @@
+@@ -25,14 +25,10 @@
  
  AUTOMAKE_OPTIONS = -Wno-gnu
  
@@ -10,9 +10,6 @@ index ff7569fbc0..c25c23a592 100644
 -CPPFLAGS = $(CPPFLAGS_FOR_BUILD) $(NO_SANITIZE_CFLAGS)
 -CFLAGS = $(CFLAGS_FOR_BUILD) $(NO_SANITIZE_CFLAGS)
 -LDFLAGS = $(LDFLAGS_FOR_BUILD) $(NO_SANITIZE_LDFLAGS)
-+CPPFLAGS = $(CPPFLAGS) $(NO_SANITIZE_CFLAGS)
-+CFLAGS = $(CFLAGS) $(NO_SANITIZE_CFLAGS)
-+LDFLAGS = $(LDFLAGS) $(NO_SANITIZE_LDFLAGS)
  LIBS =
  
  AM_CPPFLAGS = -I$(top_srcdir)
