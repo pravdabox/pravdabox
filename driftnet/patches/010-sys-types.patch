@@ -1,3 +1,13 @@
+--- a/src/media/image.h
++++ b/src/media/image.h
+@@ -12,6 +12,7 @@
+ 
+ #ifndef __IMAGE_H__
+ #define __IMAGE_H__
++#include <sys/types.h>
+ 
+ unsigned char *find_gif_image(const unsigned char *data, const size_t len,
+         unsigned char **gifdata, size_t *giflen);
 --- a/src/media/media.h
 +++ b/src/media/media.h
 @@ -21,6 +21,7 @@
