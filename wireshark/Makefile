@@ -35,7 +35,8 @@ TARGET_CFLAGS += -D_GNU_SOURCE -fPIC \
 
 TARGET_LDFLAGS += -ldl \
 	-L$(STAGING_DIR)/usr/lib/libintl/lib \
-	-L$(STAGING_DIR)/usr/lib/libiconv/lib
+	-L$(STAGING_DIR)/usr/lib/libiconv/lib \
+	-L$(TOOLCHAIN_DIR)/usr/lib -L$(TOOLCHAIN_DIR)/lib -Wl,-rpath=$(TOOLCHAIN_DIR)/lib
 
 define Package/wireshark/description
  wireshark captures network traffic
