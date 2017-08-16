@@ -20,10 +20,12 @@ define Package/wireshark
   SECTION:=net
   CATEGORY:=Network
   TITLE:=wireshark
-  DEPENDS:=+libpcap +libgcrypt +glib2 +libiconv-full
+  DEPENDS:=+libpcap +libgcrypt +glib2 +libiconv-full +libpthread
 endef
 
 #PKG_FIXUP:=autoreconf
+
+#TARGET_CFLAGS += -D_GNU_SOURCE -fPIC thread.c -static -lpthread -lc -lgcc_eh \
 
 TARGET_CFLAGS += -D_GNU_SOURCE -fPIC \
 	-I$(STAGING_DIR)/usr/lib/libintl/include \
