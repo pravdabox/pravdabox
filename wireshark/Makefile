@@ -19,7 +19,7 @@ include $(INCLUDE_DIR)/nls.mk
 define Package/wireshark
   SECTION:=net
   CATEGORY:=Network
-  TITLE:=wireshark
+  TITLE:=Wireshark
   DEPENDS:=+libpcap +libgcrypt +glib2 +libiconv-full
 endef
 
