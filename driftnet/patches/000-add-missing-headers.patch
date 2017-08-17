@@ -1,5 +1,3 @@
-diff --git a/src/media/image.c b/src/media/image.c
-index a6f65cf..2be7988 100644
 --- a/src/media/image.c
 +++ b/src/media/image.c
 @@ -18,6 +18,7 @@
@@ -10,8 +8,6 @@ index a6f65cf..2be7988 100644
  
  #include "util.h"
  
-diff --git a/src/pid.c b/src/pid.c
-index 389cd8d..1d2cea8 100644
 --- a/src/pid.c
 +++ b/src/pid.c
 @@ -21,6 +21,7 @@
