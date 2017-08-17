@@ -19,22 +19,16 @@ define Package/driftnet
   SECTION:=net
   CATEGORY:=Network
   TITLE:=Driftnet
-  DEPENDS:=+libpcap +libpthread
+  DEPENDS:=+libpcap
+endef
+
+define Package/driftnet/description
+ Driftnet watches network traffic and displays images.
 endef
 
 PKG_FIXUP:=autoreconf
-
 TARGET_CFLAGS += -D_GNU_SOURCE -fPIC
 
-define Package/driftnet/description
- Driftnet watches network traffic and displays images
-endef
-
-#define Build/Configure
-#	echo $(TARGET_CONFIGURE_OPTS) && cd $(PKG_BUILD_DIR) && CFLAGS="$(TARGET_CFLAGS)" autoreconf -fi && ./configure $(TARGET_CONFIGURE_OPTS)
-#endef
-
-#cd $(PKG_BUILD_DIR) && CFLAGS="$(TARGET_CFLAGS)" autoreconf -fi && ./configure $(TARGET_CONFIGURE_OPTS)
 define Build/Configure
 	cd $(PKG_BUILD_DIR) && CFLAGS="$(TARGET_CFLAGS)" autoreconf -fi && CFLAGS="$(TARGET_CFLAGS)" ./configure --disable-display --host=$(ARCH) $(TARGET_CONFIGURE_OPTS)
 endef

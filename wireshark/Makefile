@@ -20,12 +20,12 @@ define Package/wireshark
   SECTION:=net
   CATEGORY:=Network
   TITLE:=wireshark
-  DEPENDS:=+libpcap +libgcrypt +glib2 +libiconv-full +libpthread
+  DEPENDS:=+libpcap +libgcrypt +glib2 +libiconv-full
 endef
 
-#PKG_FIXUP:=autoreconf
-
-#TARGET_CFLAGS += -D_GNU_SOURCE -fPIC thread.c -static -lpthread -lc -lgcc_eh \
+define Package/wireshark/description
+ Wireshark is a free and open source packet analyzer.
+endef
 
 TARGET_CFLAGS += -D_GNU_SOURCE -fPIC \
 	-I$(STAGING_DIR)/usr/lib/libintl/include \
@@ -34,15 +34,11 @@ TARGET_CFLAGS += -D_GNU_SOURCE -fPIC \
 
 TARGET_LDFLAGS += -ldl \
 	-L$(STAGING_DIR)/usr/lib/libintl/lib \
-	-L$(STAGING_DIR)/usr/lib/libiconv/lib \
-	-L$(TOOLCHAIN_DIR)/usr/lib -L$(TOOLCHAIN_DIR)/lib -Wl,-rpath=$(TOOLCHAIN_DIR)/lib
-
-define Package/wireshark/description
- wireshark captures network traffic
-endef
+	-L$(STAGING_DIR)/usr/lib/libiconv/lib
 
 define Build/Configure
-	cd $(PKG_BUILD_DIR) && CFLAGS="$(TARGET_CFLAGS)" LDFLAGS="$(TARGET_LDFLAGS)" ./autogen.sh \
+	cd $(PKG_BUILD_DIR) \
+	&& CFLAGS="$(TARGET_CFLAGS)" LDFLAGS="$(TARGET_LDFLAGS)" ./autogen.sh \
 	--host=$(ARCH) --target=$(GNU_TARGET_NAME) $(TARGET_CONFIGURE_OPTS) \
 	&& CFLAGS="$(TARGET_CFLAGS)" LDFLAGS="$(TARGET_LDFLAGS)" ./configure \
 	--host=$(ARCH) --target=$(GNU_TARGET_NAME) $(TARGET_CONFIGURE_OPTS) \
@@ -77,7 +73,7 @@ define Build/Compile
 	$(MAKE) -j9 -C $(PKG_BUILD_DIR)/writecap
 	$(MAKE) -j9 -C $(PKG_BUILD_DIR) dumpcap
 	$(MAKE) -j9 -C $(PKG_BUILD_DIR)/capchild
-	$(MAKE) -j9 -C $(PKG_BUILD_DIR)/epan STAGING_DIR_HOST=$(STAGING_DIR_HOST)
+	$(MAKE) -j9 -C $(PKG_BUILD_DIR)/epan
 	$(MAKE) -j9 -C $(PKG_BUILD_DIR) tshark LIBS="$(STAGING_DIR)/usr/lib/libpcap.a $(ICONV_PREFIX)/lib/libiconv.a"
 endef
 
