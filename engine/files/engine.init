@@ -7,12 +7,13 @@ start() {
 
     # firewall allow all
     /usr/sbin/iptables -F
+    /usr/sbin/iptables -F -t nat
     /usr/sbin/iptables -P INPUT ACCEPT
     /usr/sbin/iptables -P OUTPUT ACCEPT
     /usr/sbin/iptables -P FORWARD ACCEPT
 
     # NAT
-    /usr/sbin/iptables-A POSTROUTING -t nat -o eth2 -j MASQUERADE
+    /usr/sbin/iptables -A POSTROUTING -t nat -o eth2 -j MASQUERADE
 
     # kill dnsmasq
     /etc/init.d/dnsmasq stop
