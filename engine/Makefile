@@ -10,6 +10,7 @@ define Package/engine
   SECTION:=administration
   CATEGORY:=Pravdabox
   TITLE:=Pravdabox Engine
+  DEPENDS:=+isc-dhcp-server-ipv4
 endef
 
 define Package/engine/description
