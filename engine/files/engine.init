@@ -1,0 +1,19 @@
+#!/bin/sh /etc/rc.common
+# engine init
+
+START=95
+
+start() {
+
+    # firewall allow all
+    /usr/sbin/iptables -F
+    /usr/sbin/iptables -P INPUT ACCEPT
+    /usr/sbin/iptables -P OUTPUT ACCEPT
+    /usr/sbin/iptables -P FORWARD ACCEPT
+
+    # kill dnsmasq
+    /etc/init.d/dnsmasq stop
+    chmod -x /etc/init.d/dnsmasq
+
+}
+
