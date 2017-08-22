@@ -15,5 +15,8 @@ start() {
     /etc/init.d/dnsmasq stop
     chmod -x /etc/init.d/dnsmasq
 
+    # start dhcpd
+    /etc/init.d/dhcpd restart
+
 }
 
