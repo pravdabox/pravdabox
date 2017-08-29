@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=engine
-PKG_VERSION:=0.1.2
+PKG_VERSION:=0.1.3
 PKG_RELEASE:=1
 
 include $(INCLUDE_DIR)/package.mk
@@ -24,12 +24,19 @@ define Build/Compile
 endef
 
 define Package/engine/install
+	# engine init
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/engine.init $(1)/etc/init.d/engine
 
+	# place configs for initial run
 	$(INSTALL_DIR) $(1)/etc/config
 	$(INSTALL_DATA) ./files/network.config $(1)/etc/config/network
 	$(INSTALL_DATA) ./files/dhcpd.conf $(1)/etc/dhcpd.conf
+
+	# place configs to override restore during upgrade
+	$(INSTALL_DIR) $(1)/opt/pravdabox/config
+	$(INSTALL_DATA) ./files/network.config $(1)/opt/pravdabox/config/network
+	$(INSTALL_DATA) ./files/dhcpd.conf $(1)/opt/pravdabox/config/dhcpd.conf
 endef
 
 $(eval $(call BuildPackage,engine))
