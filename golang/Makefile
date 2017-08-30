@@ -11,7 +11,6 @@ PKG_MD5SUM:=84b51207cdd227248ec4e60cc5e2fa79
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 
 include $(INCLUDE_DIR)/package.mk
-include $(INCLUDE_DIR)/host-build.mk
 
 define Package/golang
   SECTION:=lang
@@ -25,15 +24,13 @@ endef
 
 define Package/golang/install
 	$(INSTALL_DIR) $(STAGING_DIR_HOSTPKG)/usr/local
-	$(CP) -rv $(HOST_BUILD_DIR)/go $(STAGING_DIR_HOSTPKG)/usr/local/
+	$(CP) -rv $(PKG_BUILD_DIR)/../go $(STAGING_DIR_HOSTPKG)/usr/local/
 endef
 
-define Host/Build
+define Build/Configure
 endef
 
-define Host/Install
-	$(INSTALL_DIR) $(STAGING_DIR_HOSTPKG)/usr/local
-	$(CP) -rv $(HOST_BUILD_DIR)/go $(STAGING_DIR_HOSTPKG)/usr/local/
+define Build/Compile
 endef
 
 $(eval $(call BuildPackage,golang))
