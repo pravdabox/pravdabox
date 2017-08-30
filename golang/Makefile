@@ -23,6 +23,9 @@ define Package/golang/description
  Go is an open source programming language that makes it easy to build simple, reliable, and efficient software.
 endef
 
+define Host/Build
+endef
+
 define Host/Install
 	$(INSTALL_DIR) $(STAGING_DIR_HOSTPKG)/usr/local
 	$(CP) -rv $(HOST_BUILD_DIR)/go $(STAGING_DIR_HOSTPKG)/usr/local/
