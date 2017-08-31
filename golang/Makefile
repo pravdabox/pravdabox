@@ -31,7 +31,7 @@ endef
 
 define Build/InstallDev
 	$(INSTALL_DIR) $(STAGING_DIR_HOSTPKG)/usr/local
-	$(CP) -rv $(PKG_BUILD_DIR)/go $(STAGING_DIR_HOSTPKG)/usr/local/
+	$(CP) -r $(PKG_BUILD_DIR)/go $(STAGING_DIR_HOSTPKG)/usr/local/
 endef
 
 $(eval $(call BuildPackage,golang))
