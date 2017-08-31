@@ -10,8 +10,9 @@ define Package/webinterface
   SECTION:=administration
   CATEGORY:=Pravdabox
   TITLE:=Pravdabox Webinterface
-  DEPENDS:=+golang
 endef
+
+PKG_BUILD_DEPENDS:=golang
 
 GOPATH:=$(STAGING_DIR)/host/go
 
