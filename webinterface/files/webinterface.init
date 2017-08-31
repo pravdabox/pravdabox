@@ -1,0 +1,9 @@
+#!/bin/sh /etc/rc.common
+# webinterface init
+
+START=96
+
+start() {
+    /opt/pravdabox/webinterface -l 192.168.42.1:80
+}
+

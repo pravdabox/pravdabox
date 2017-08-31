@@ -1,8 +1,8 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=webinterface
-PKG_VERSION:=0.1.0
-PKG_RELEASE:=4
+PKG_VERSION:=0.2.0
+PKG_RELEASE:=1
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -30,6 +30,9 @@ endef
 define Package/webinterface/install
 	$(INSTALL_DIR) $(1)/opt/pravdabox
 	$(CP) -rv $(GOPATH)/bin/webinterface $1/opt/pravdabox/
+
+	$(INSTALL_DIR) $(1)/etc/init.d
+	$(INSTALL_BIN) ./files/webinterface.init $(1)/etc/init.d/webinterface
 endef
 
 $(eval $(call BuildPackage,webinterface))
