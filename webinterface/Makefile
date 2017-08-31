@@ -12,6 +12,8 @@ define Package/webinterface
   TITLE:=Pravdabox Webinterface
 endef
 
+PKG_BUILD_DEPENDS:=golang/host
+
 GOPATH:=$(STAGING_DIR)/host/go
 
 define Package/webinterface/description
