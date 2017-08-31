@@ -24,6 +24,9 @@ start() {
 
     # dhcp
     cp /opt/pravdabox/config/dhcpd.conf /etc/dhcpd.conf
+
+    # wait 5s for all interfaces to become ready
+    sleep 5
     /etc/init.d/dhcpd restart
 
 }
