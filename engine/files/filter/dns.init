@@ -1,9 +1,0 @@
-#!/bin/sh /etc/rc.common
-# filter dns init
-
-START=101
-
-start() {
-    /opt/pravdabox/websocketd --port=8081 /opt/pravdabox/filter/dns.sh &
-}
-
