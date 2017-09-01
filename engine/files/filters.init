@@ -4,7 +4,7 @@
 START=97
 
 start() {
-    /opt/pravdabox/websocketd --port=8081 /opt/pravdabox/filter-dns.sh &
+    /opt/pravdabox/websocketd --port=8081 /opt/pravdabox/filter-dns.sh &> /dev/null &
     #/opt/pravdabox/websocketd --port=8082 /opt/pravdabox/filter-connections.sh &
     #/opt/pravdabox/websocketd --port=8083 /opt/pravdabox/filter-passwords.sh &
     #/opt/pravdabox/websocketd --port=8084 /opt/pravdabox/filter-http.sh &
