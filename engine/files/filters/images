@@ -1,7 +1,5 @@
 #!/bin/ash
 
-dirdate=$(dirdate)
-
 dirdate() {
     ls -ld /tmp/driftnet/ | awk '{ print $8 }'
 }
@@ -10,6 +8,7 @@ listfiles() {
     ls -1 -A -c -r /tmp/driftnet
 }
 
+dirdate=0
 while true; do
     if [[ $(dirdate) != $dirdate ]]; then
         listfiles
