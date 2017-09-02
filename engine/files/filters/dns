@@ -1,12 +1,4 @@
 #!/bin/ash
 
-#tshark -i eth0 -l -f 'src port 53' -n -T fields -e dns.qry.name
-
-# mojo's original filter
-#tshark -l -q -i "$IFACE" -f "dst port 53 and dst host 192.168.123.1" -T fields  -E separator=/s -e ip.src -e dns.qry.name | \
-#awk -v urllength=`tput cols` -W interactive '{ print substr($0, 1, urllength+8) }'
-
-# filter test
-tshark -l -q -i eth0 -f 'src port 53' -T fields -E separator=/s -e ip.src -e dns.qry.name | \
-awk -v urllength=`tput cols` -W interactive '{ print substr($0, 1, urllength+8) }'
+tshark -i eth0 -l -f 'src port 53' -n -T fields -e dns.qry.name
 
