@@ -4,6 +4,6 @@
 START=96
 
 start() {
-    /opt/pravdabox/webinterface -l 192.168.42.1:80 -wsl 192.168.42.1:8088  &> /dev/null &
+    /opt/pravdabox/webinterface -l 192.168.42.1:80 &> /dev/null &
 }
 
