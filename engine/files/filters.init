@@ -13,5 +13,9 @@ start() {
     #/opt/pravdabox/websocketd --port=8084 /opt/pravdabox/filter-http.sh &> /dev/null &
     #/opt/pravdabox/websocketd --port=8085 /opt/pravdabox/filter-cookies.sh &> /dev/null &
     #/opt/pravdabox/websocketd --port=8086 /opt/pravdabox/filter-images.sh &> /dev/null &
+
+    # provisorisch
+    mkdir /tmp/driftnet
+    driftnet -i eth0 -v -a -d /tmp/driftnet -m 20 &> /dev/null &
 }
 
