@@ -16,6 +16,6 @@ start() {
 
     # provisorisch
     mkdir /tmp/driftnet
-    driftnet -i eth0 -v -a -d /tmp/driftnet -m 20 &> /dev/null &
+    driftnet -i eth0 -v -a -d /tmp/driftnet &> /dev/null &
 }
 
