@@ -1,19 +1,4 @@
 #!/bin/ash
 
-dirdate() {
-    ls -ld /tmp/driftnet/ | awk '{ print $8 }'
-}
-
-listfiles() {
-    ls -1 -A -c -r /tmp/driftnet
-}
-
-dirdate=0
-while true; do
-    if [[ $(dirdate) != $dirdate ]]; then
-        listfiles
-        dirdate=$(dirdate)
-    fi
-    sleep 1
-done
+tail -f /tmp/filter-images.out
 
