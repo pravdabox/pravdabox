@@ -1,4 +1,4 @@
 #!/bin/ash
 
-tshark -i eth0 -l -f 'dst port 80' -n -T fields -e http.request.uri -l | grep -v -e '^$'
+tshark -i eth0 -l -f 'dst port 80' -n -T fields -e urlencoded-form.key -e urlencoded-form.value | strings
 

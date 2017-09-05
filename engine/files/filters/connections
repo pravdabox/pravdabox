@@ -1,0 +1,4 @@
+#!/bin/ash
+
+tshark -i eth0 -l -f 'not dst host 8.8.4.4' -T fields -e ip.dst | strings | uniq
+

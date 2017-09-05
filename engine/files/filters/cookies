@@ -1,0 +1,4 @@
+#!/bin/ash
+
+tshark -i eth0 -l -f 'dst port 80' -n -T fields -e http.cookie | strings
+
