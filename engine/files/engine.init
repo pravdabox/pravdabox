@@ -15,9 +15,8 @@ start() {
     # NAT
     /usr/sbin/iptables -A POSTROUTING -t nat -o eth2 -j MASQUERADE
 
-    # kill dnsmasq
+    # stop dnsmasq
     /etc/init.d/dnsmasq stop
-    chmod -x /etc/init.d/dnsmasq
 
     # network config
     cp /opt/pravdabox/config/network /etc/config/network
@@ -25,9 +24,14 @@ start() {
     # dhcp
     cp /opt/pravdabox/config/dhcpd.conf /etc/dhcpd.conf
 
+    # dns
+    cp /opt/pravdabox/config/resolv.conf.pravdabox /etc/resolv.conf.pravdabox
+    cp /opt/pravdabox/config/dns.config /etc/config/dhcp
+
     # wait 5s for all interfaces to become ready
     sleep 5
     /etc/init.d/dhcpd restart
+    /etc/init.d/dnsmasq restart
 
 }
 

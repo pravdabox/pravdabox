@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=engine
-PKG_VERSION:=0.6.2
+PKG_VERSION:=0.7.0
 PKG_RELEASE:=1
 
 include $(INCLUDE_DIR)/package.mk
@@ -31,11 +31,15 @@ define Package/engine/install
 	# place configs for initial run
 	$(INSTALL_DIR) $(1)/etc/config
 	$(INSTALL_DATA) ./files/network.config $(1)/etc/config/network
+	$(INSTALL_DATA) ./files/dns.config $(1)/etc/config/dhcp
+	$(INSTALL_DATA) ./files/resolv.conf.pravdabox $(1)/etc/resolv.conf.pravdabox
 	$(INSTALL_DATA) ./files/dhcpd.conf $(1)/etc/dhcpd.conf
 
 	# place configs to override restore during upgrade
 	$(INSTALL_DIR) $(1)/opt/pravdabox/config
 	$(INSTALL_DATA) ./files/network.config $(1)/opt/pravdabox/config/network
+	$(INSTALL_DATA) ./files/dns.config $(1)/opt/pravdabox/config/dns.config
+	$(INSTALL_DATA) ./files/resolv.conf.pravdabox $(1)/opt/pravdabox/config/resolv.conf.pravdabox
 	$(INSTALL_DATA) ./files/dhcpd.conf $(1)/opt/pravdabox/config/dhcpd.conf
 
 	# filters
