@@ -27,6 +27,7 @@ start() {
     # dns
     cp /opt/pravdabox/config/resolv.conf.pravdabox /etc/resolv.conf.pravdabox
     cp /opt/pravdabox/config/dns.config /etc/config/dhcp
+    cp /opt/pravdabox/config/hosts /etc/hosts
 
     # wait 5s for all interfaces to become ready
     sleep 5
