@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=engine
-PKG_VERSION:=0.7.7
+PKG_VERSION:=0.8.0
 PKG_RELEASE:=1
 
 include $(INCLUDE_DIR)/package.mk
@@ -51,6 +51,10 @@ define Package/engine/install
 	$(INSTALL_BIN) ./files/filters/http $(1)/opt/pravdabox/filters/http
 	$(INSTALL_BIN) ./files/filters/cookies $(1)/opt/pravdabox/filters/cookies
 	$(INSTALL_BIN) ./files/filters/images $(1)/opt/pravdabox/filters/images
+
+	# helpers
+	$(INSTALL_DIR) $(1)/usr/bin
+	$(INSTALL_BIN) ./files/dns_lookup.sh $(1)/usr/bin/dns_lookup
 endef
 
 $(eval $(call BuildPackage,engine))
