@@ -1,6 +1,6 @@
 #!/bin/ash
 
-tshark -i eth0 -l -f 'dst port 80' -n -T fields -e http.cookie | strings
+tail -f /tmp/filter-cookies.out
 
 # mojo
 #tshark -l -q -i "$IFACE" -f "dst port 80" -T fields -E separator=/s -e ip.src -e http.cookie | \
