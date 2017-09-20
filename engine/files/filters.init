@@ -4,17 +4,10 @@
 START=97
 
 start() {
-    # todo: dann schon so machen, aber später.
-    # ziel: hier die filter starten, die ihre ergebnisse in dateien umleiten
-    # grund: mehrere benutzer können sich verbinden und lesen nur eine ausgabedatei, statt 10x forks von tshark...
-    #/opt/pravdabox/websocketd --port=8081 /opt/pravdabox/filter-dns.sh &> /dev/null &
-    #/opt/pravdabox/websocketd --port=8082 /opt/pravdabox/filter-connections.sh &> /dev/null &
-    #/opt/pravdabox/websocketd --port=8083 /opt/pravdabox/filter-passwords.sh &> /dev/null &
-    #/opt/pravdabox/websocketd --port=8084 /opt/pravdabox/filter-http.sh &> /dev/null &
-    #/opt/pravdabox/websocketd --port=8085 /opt/pravdabox/filter-cookies.sh &> /dev/null &
-    #/opt/pravdabox/websocketd --port=8086 /opt/pravdabox/filter-images.sh &> /dev/null &
+    # connections
+    tshark -i eth0 -l -f 'not dst host 8.8.4.4 and not dst net 192.168.0.0/16 and not src net 192.168.0.0/16' -T fields -e ip.dst | uniq > /tmp/filter-connections.out &
 
-    # provisorisch
+    # images
     mkdir /tmp/driftnet
     driftnet -i eth0 -v -a -d /tmp/driftnet &> /dev/null &
 }
