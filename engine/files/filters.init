@@ -5,7 +5,7 @@ START=97
 
 start() {
     # connections
-    tshark -i eth0 -l -V -f 'not dst host 91.219.237.212 and not dst net 192.168.0.0/16 and not src net 192.168.0.0/16' -T fields -e ip.dst | uniq > /tmp/filter-connections.out &
+    tshark -i eth0 -l -f 'not dst host 91.219.237.212' -T fields -e ip.dst > /tmp/filter-connections.out &
 
     # images
     mkdir /tmp/driftnet
