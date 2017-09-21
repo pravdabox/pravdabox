@@ -8,13 +8,13 @@ start() {
     tshark -i eth0 -l -f 'not dst host 91.219.237.212  and not dst net 192.168.0.0/16' -T fields -e ip.dst | grep -v '^$' | while read L; do dns_lookup $L; done > /tmp/filter-connections.out &
 
     # cookies
-    tshark -i eth0 -l -f 'dst port 80' -n -T fields -e http.cookie | grep -v '^$' > /tmp/filter-cookies.out &
+    tshark -i eth0 -l -f 'dst port 80' -n -T fields -e ip.src -e http.cookie | grep -v '^$' > /tmp/filter-cookies.out &
 
     # DNS
-    tshark -i eth0 -l -f 'src port 53' -n -T fields -e dns.qry.name | grep -v '^$' > /tmp/filter-dns.out &
+    tshark -i eth0 -l -f 'dst port 53' -n -T fields -e ip.src -e dns.qry.name | grep -v '^$' > /tmp/filter-dns.out &
 
     # HTTP
-    tshark -i eth0 -l -f 'dst port 80' -n -T fields -e urlencoded-form.key -e urlencoded-form.value | grep -v '^$' > /tmp/filter-http.out &
+    tshark -i eth0 -l -f 'dst port 80' -n -T fields -e ip.src -e urlencoded-form.key -e urlencoded-form.value | grep -v '^$' > /tmp/filter-http.out &
 
     # images
     mkdir /tmp/driftnet
