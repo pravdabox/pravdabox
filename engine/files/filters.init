@@ -13,8 +13,8 @@ start() {
     # DNS
     tshark -i eth0 -l -f 'dst port 53' -n -T fields -e ip.src -e dns.qry.name | grep -v '^$' > /tmp/filter-dns.out &
 
-    # HTTP
-    tshark -i eth0 -l -f 'dst port 80' -n -T fields -e ip.src -e urlencoded-form.key -e urlencoded-form.value | grep -v '^$' > /tmp/filter-http.out &
+    # Forms
+    tshark -i eth0 -l -f 'dst port 80' -n -T fields -e ip.src -e urlencoded-form.key -e urlencoded-form.value | grep -v '^$' > /tmp/filter-forms.out &
 
     # images
     mkdir /tmp/driftnet

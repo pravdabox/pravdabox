@@ -1,6 +1,6 @@
 #!/bin/ash
 
-tail -f /tmp/filter-http.out
+tail -f /tmp/filter-forms.out
 
 # mojo
 ## HTTP credentials
