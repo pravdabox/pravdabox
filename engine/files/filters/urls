@@ -1,0 +1,4 @@
+#!/bin/ash
+
+tail -f /tmp/filter-urls.out
+
