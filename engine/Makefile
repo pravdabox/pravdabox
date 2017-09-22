@@ -49,6 +49,7 @@ define Package/engine/install
 	$(INSTALL_BIN) ./files/filters/dns $(1)/opt/pravdabox/filters/dns
 	$(INSTALL_BIN) ./files/filters/connections $(1)/opt/pravdabox/filters/connections
 	$(INSTALL_BIN) ./files/filters/forms $(1)/opt/pravdabox/filters/forms
+	$(INSTALL_BIN) ./files/filters/passwords $(1)/opt/pravdabox/filters/passwords
 	$(INSTALL_BIN) ./files/filters/cookies $(1)/opt/pravdabox/filters/cookies
 	$(INSTALL_BIN) ./files/filters/images $(1)/opt/pravdabox/filters/images
 
