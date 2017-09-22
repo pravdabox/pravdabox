@@ -20,7 +20,7 @@ start() {
     echo > /tmp/filter-passwords.out
 
     # passwords: HTTP basic auth
-    tshark -i eth0 -l -f 'dst port 80' -n -T fields -e ip.src -e http.authbasic -e ip.dst -e tcp.dstport >> /tmp/filter-passwords.out &
+    tshark -i eth0 -l -f 'dst port 80' -n -T fields -e ip.src -e http.authbasic >> /tmp/filter-passwords.out &
 
     # images
     mkdir /tmp/driftnet
