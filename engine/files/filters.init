@@ -17,10 +17,7 @@ start() {
     tshark -i eth0 -l -f 'dst port 80' -n -T fields -e ip.src -e urlencoded-form.key -e urlencoded-form.value > /tmp/filter-forms.out &
 
     # passwords
-    echo > /tmp/filter-passwords.out
-
-    # passwords: HTTP basic auth
-    tshark -i eth0 -l -f 'dst port 80' -n -T fields -e ip.src -e http.authbasic >> /tmp/filter-passwords.out &
+    tshark -i eth0 -l -f 'dst port 80' -n -T fields -e ip.src -e http.authbasic -e smtp.auth.username_password > /tmp/filter-passwords.out &
 
     # images
     mkdir /tmp/driftnet
