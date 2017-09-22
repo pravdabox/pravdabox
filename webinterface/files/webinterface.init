@@ -4,6 +4,8 @@
 START=96
 
 start() {
+    # wait 5s for all interfaces to become ready
+    sleep 5
     /opt/pravdabox/webinterface -l 192.168.42.1:80 &> /dev/null &
 }
 

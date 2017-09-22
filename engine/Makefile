@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=engine
-PKG_VERSION:=0.15.0
+PKG_VERSION:=0.16.0
 PKG_RELEASE:=1
 
 include $(INCLUDE_DIR)/package.mk
@@ -41,6 +41,7 @@ define Package/engine/install
 	$(INSTALL_DATA) ./files/network.config $(1)/opt/pravdabox/config/network
 	$(INSTALL_DATA) ./files/dns.config $(1)/opt/pravdabox/config/dns.config
 	$(INSTALL_DATA) ./files/resolv.conf.pravdabox $(1)/opt/pravdabox/config/resolv.conf.pravdabox
+	$(INSTALL_DATA) ./files/hosts $(1)/opt/pravdabox/config/hosts
 	$(INSTALL_DATA) ./files/dhcpd.conf $(1)/opt/pravdabox/config/dhcpd.conf
 
 	# filters
