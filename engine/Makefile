@@ -48,7 +48,7 @@ define Package/engine/install
 	$(INSTALL_BIN) ./files/filters.init $(1)/etc/init.d/filters
 	$(INSTALL_BIN) ./files/filters/dns $(1)/opt/pravdabox/filters/dns
 	$(INSTALL_BIN) ./files/filters/connections $(1)/opt/pravdabox/filters/connections
-	$(INSTALL_BIN) ./files/filters/http $(1)/opt/pravdabox/filters/http
+	$(INSTALL_BIN) ./files/filters/forms $(1)/opt/pravdabox/filters/forms
 	$(INSTALL_BIN) ./files/filters/cookies $(1)/opt/pravdabox/filters/cookies
 	$(INSTALL_BIN) ./files/filters/images $(1)/opt/pravdabox/filters/images
 
