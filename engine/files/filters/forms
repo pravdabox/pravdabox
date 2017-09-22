@@ -2,36 +2,3 @@
 
 tail -f /tmp/filter-forms.out
 
-# mojo
-## HTTP credentials
-#tshark -l -q -i "$IFACE" -T fields -E separator=/s -e ip.src -e http.authbasic -e ip.dst -e tcp.dstport | \
-#grep --line-buffered ":" | \
-#awk -v urllength=`tput cols` -W interactive '{ print substr($0, 1, urllength+8) }'
-#
-#
-#
-## HTML "Form" sniffer (inkl. parsing)
-#tshark -l -q -i "$IFACE" -T fields -E separator=/s -e ip.src -e http.host -e http.request.uri -e urlencoded-form.key -e urlencoded-form.value | \
-#grep --line-buffered -v " $" | \
-#while read L; do
-#        S="${L%% *}"
-#        L="${L#* }"
-#        D="http://${L%% *}"
-#        L="${L#* }"
-#        D="${D}${L%% *}"
-#        L="${L#* }"
-#        K="${L%% *}"
-#        V="${L#* }"
-#        I=0
-#        echo "${S} ${D}:"
-#        while [ "$K" != "$O" ]; do
-#                O="$K"
-#                I=$(( $I + 1 ))
-#                K[$I]="${K%%,*}"
-#                K="${K#*,}"
-#                V[$I]="${V%%,*}"
-#                V="${V#*,}"
-#                [ ${#K[$I]} -lt 8 ] && T="\t" || T=""
-#                echo -e "\t${K[$I]}\t${T}${V[$I]}"
-#        done
-#done

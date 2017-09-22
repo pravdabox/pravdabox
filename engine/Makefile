@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=engine
-PKG_VERSION:=0.14.0
+PKG_VERSION:=0.15.0
 PKG_RELEASE:=1
 
 include $(INCLUDE_DIR)/package.mk
@@ -52,6 +52,7 @@ define Package/engine/install
 	$(INSTALL_BIN) ./files/filters/passwords $(1)/opt/pravdabox/filters/passwords
 	$(INSTALL_BIN) ./files/filters/cookies $(1)/opt/pravdabox/filters/cookies
 	$(INSTALL_BIN) ./files/filters/images $(1)/opt/pravdabox/filters/images
+	$(INSTALL_BIN) ./files/filters/urls $(1)/opt/pravdabox/filters/urls
 
 	# helpers
 	$(INSTALL_DIR) $(1)/usr/bin
