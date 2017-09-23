@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=engine
-PKG_VERSION:=0.16.0
+PKG_VERSION:=0.17.0
 PKG_RELEASE:=1
 
 include $(INCLUDE_DIR)/package.mk
@@ -10,7 +10,7 @@ define Package/engine
   SECTION:=administration
   CATEGORY:=Pravdabox
   TITLE:=Pravdabox Engine
-  DEPENDS:=+isc-dhcp-server-ipv4
+  DEPENDS:=+isc-dhcp-server-ipv4 +grep
 endef
 
 define Package/engine/description
