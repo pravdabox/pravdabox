@@ -4,25 +4,24 @@
 START=97
 
 start() {
-    alias skip_empty="grep -v --line-buffered -e '^192\.168\.23\.[0-9]\{1,3\}\s$'"
 
     # connections
-    tshark -i eth0 -l -f 'not dst host 91.219.237.212  and not dst net 192.168.0.0/16' -T fields -e ip.src -e ip.dst | skip_empty | while read L; do dns_lookup $L; done > /tmp/filter-connections.out &
+    tshark -i eth0 -l -f 'not dst host 91.219.237.212  and not dst net 192.168.0.0/16' -T fields -e ip.src -e ip.dst | grep -v --line-buffered -e '^192\.168\.23\.[0-9]\{1,3\}\s$' | while read L; do dns_lookup $L; done > /tmp/filter-connections.out &
 
     # cookies
-    tshark -i eth0 -l -f 'dst port 80' -n -T fields -e ip.src -e http.cookie | skip_empty > /tmp/filter-cookies.out &
+    tshark -i eth0 -l -f 'dst port 80' -n -T fields -e ip.src -e http.cookie | grep -v --line-buffered -e '^192\.168\.23\.[0-9]\{1,3\}\s$' > /tmp/filter-cookies.out &
 
     # DNS
-    tshark -i eth0 -l -f 'dst port 53' -n -T fields -e ip.src -e dns.qry.name | skip_empty > /tmp/filter-dns.out &
+    tshark -i eth0 -l -f 'dst port 53' -n -T fields -e ip.src -e dns.qry.name | grep -v --line-buffered -e '^192\.168\.23\.[0-9]\{1,3\}\s$' > /tmp/filter-dns.out &
 
     # forms
-    tshark -i eth0 -l -f 'dst port 80' -n -T fields -e ip.src -e urlencoded-form.key -e urlencoded-form.value | skip_empty > /tmp/filter-forms.out &
+    tshark -i eth0 -l -f 'dst port 80' -n -T fields -e ip.src -e urlencoded-form.key -e urlencoded-form.value | grep -v --line-buffered -e '^192\.168\.23\.[0-9]\{1,3\}\s$' > /tmp/filter-forms.out &
 
     # passwords
-    tshark -i eth0 -l -f 'dst port 80' -n -T fields -e ip.src -e http.authbasic -e smtp.auth.username_password | skip_empty > /tmp/filter-passwords.out &
+    tshark -i eth0 -l -f 'dst port 80' -n -T fields -e ip.src -e http.authbasic -e smtp.auth.username_password | grep -v --line-buffered -e '^192\.168\.23\.[0-9]\{1,3\}\s$' > /tmp/filter-passwords.out &
 
     # URLs
-    tshark -i eth0 -l -f 'dst port 80' -n -T fields -e ip.src -e http.request.uri | skip_empty > /tmp/filter-urls.out &
+    tshark -i eth0 -l -f 'dst port 80' -n -T fields -e ip.src -e http.request.uri | grep -v --line-buffered -e '^192\.168\.23\.[0-9]\{1,3\}\s$' > /tmp/filter-urls.out &
 
     # images
     mkdir /tmp/driftnet
