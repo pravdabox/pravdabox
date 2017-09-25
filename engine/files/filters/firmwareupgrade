@@ -6,5 +6,5 @@ echo Done.
 echo
 sleep 1
 echo Writing firmware...
-/usr/sbin/upgrader-testing write &> /dev/null &
+/usr/sbin/upgrader write &> /dev/null &
 
