@@ -6,5 +6,5 @@ echo done.
 echo
 sleep 1
 echo writing firmware...
-nohup /usr/sbin/upgrader-testing write 2>&1 &
+setsid setsid /usr/sbin/upgrader-testing write 2>&1 &
 
