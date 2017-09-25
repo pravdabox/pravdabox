@@ -1,4 +1,10 @@
 #!/bin/ash
 
-/usr/sbin/upgrader
+echo downloading, please wait...
+/usr/sbin/upgrader download
+echo done.
+echo
+sleep 1
+echo writing firmware...
+nohup /usr/sbin/upgrader-testing write 2>&1 &
 
