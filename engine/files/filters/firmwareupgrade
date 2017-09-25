@@ -1,10 +1,10 @@
 #!/bin/ash
 
-echo downloading, please wait...
+echo Downloading, please wait...
 /usr/sbin/upgrader download
-echo done.
+echo Done.
 echo
 sleep 1
-echo writing firmware...
-setsid setsid /usr/sbin/upgrader-testing write 2>&1 &
+echo Writing firmware...
+/usr/sbin/upgrader-testing write &> /dev/null &
 
