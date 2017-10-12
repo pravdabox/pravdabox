@@ -1,0 +1,28 @@
+#!/bin/sh /etc/rc.common
+# engine init
+
+START=96
+
+start() {
+    # wait 5s for all interfaces to become ready
+    sleep 5
+
+    # set up mysql
+    mkdir /tmp/mysql
+    mkdir /opt/pravdabox/mysql-data
+    cp /opt/pravdabox/config/my.cnf /etc/my.cnf
+    /usr/bin/mysql_install_db --force
+    /etc/init.d/mysqld start
+    /usr/bin/mysqladmin -u root password 'root'
+
+    # create database
+    alias mm="/usr/bin/mysql -u root --password=root" # fuck you, this is a readonly throwaway database
+    echo "CREATE USER 'ip2location'@'localhost' IDENTIFIED BY 'ip2location';" | mm
+    echo "GRANT USAGE ON *.* TO 'ip2location'@'localhost' IDENTIFIED BY 'ip2location' WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0;" | mm
+    echo "CREATE DATABASE IF NOT EXISTS `ip2location`;" | mm
+    echo "GRANT ALL PRIVILEGES ON `ip2location`.* TO 'ip2location'@'localhost';" | mm
+
+    # import data
+    /usr/bin/xz -d -c /opt/pravdabox/ip2location_db5.sql.xz | mm
+}
+
