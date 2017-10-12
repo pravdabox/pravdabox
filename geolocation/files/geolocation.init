@@ -16,11 +16,10 @@ start() {
     /usr/bin/mysqladmin -u root password 'root'
 
     # create database
-    alias mm="/usr/bin/mysql -u root --password=root" # fuck you, this is a readonly throwaway database
-    echo "CREATE USER 'ip2location'@'localhost' IDENTIFIED BY 'ip2location';" | mm
-    echo "GRANT USAGE ON *.* TO 'ip2location'@'localhost' IDENTIFIED BY 'ip2location' WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0;" | mm
-    echo "CREATE DATABASE IF NOT EXISTS ip2location;" | mm
-    echo "GRANT ALL PRIVILEGES ON ip2location.* TO 'ip2location'@'localhost';" | mm
+    echo "CREATE USER 'ip2location'@'localhost' IDENTIFIED BY 'ip2location';" | /usr/bin/mysql -u root --password=root
+    echo "GRANT USAGE ON *.* TO 'ip2location'@'localhost' IDENTIFIED BY 'ip2location' WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0;" | /usr/bin/mysql -u root --password=root
+    echo "CREATE DATABASE IF NOT EXISTS ip2location;" | /usr/bin/mysql -u root --password=root
+    echo "GRANT ALL PRIVILEGES ON ip2location.* TO 'ip2location'@'localhost';" | /usr/bin/mysql -u root --password=root
 
     # import data
     /usr/bin/xz -d -c /opt/pravdabox/ip2location_db5.sql.xz | /usr/bin/mysql -u ip2location --password=ip2location ip2location
