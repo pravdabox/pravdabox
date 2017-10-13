@@ -4,6 +4,9 @@
 START=96
 
 start() {
+    # let the webinterface create that dir, so that the watcher works
+    mkdir /tmp/driftnet 2> /dev/null
+
     # sometimes, assets are not reachable. start webinterface and check if they are.
     while [ $(curl 192.168.42.1/static/js/pravdabox.js | wc -l) -lt 2 ]; do
         killall webinterface-bin
