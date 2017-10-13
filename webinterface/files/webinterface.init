@@ -4,8 +4,11 @@
 START=96
 
 start() {
-    # wait 5s for all interfaces to become ready
-    sleep 5
-    /opt/pravdabox/webinterface -l 192.168.42.1:80 &> /dev/null &
+    # sometimes, assets are not reachable. start webinterface and check if they are.
+    while [ $(curl 192.168.42.1/static/js/pravdabox.js | wc -l) -lt 2 ]; do
+        kill $(ps | grep '/opt/pravdabox/webinterface' | grep -v grep | cut -d' ' -f1)
+        /opt/pravdabox/webinterface -l 192.168.42.1:80 &> /dev/null &
+        sleep 1
+    done
 }
 
