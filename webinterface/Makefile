@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=webinterface
-PKG_VERSION:=0.70.1
+PKG_VERSION:=0.71.0
 PKG_RELEASE:=0
 
 include $(INCLUDE_DIR)/package.mk
@@ -28,8 +28,11 @@ define Build/Compile
 endef
 
 define Package/webinterface/install
+	$(INSTALL_DIR) $(1)/etc
+	$(INSTALL_DATA) ./files/mime.types $(1)/etc/mime.types
+
 	$(INSTALL_DIR) $(1)/opt/pravdabox
-	$(CP) -rv $(GOPATH)/bin/webinterface $1/opt/pravdabox/webinterface-bin
+	$(INSTALL_BIN) $(GOPATH)/bin/webinterface $(1)/opt/pravdabox/webinterface-bin
 
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/webinterface.init $(1)/etc/init.d/webinterface
