@@ -8,7 +8,7 @@ start() {
     mkdir /tmp/driftnet 2> /dev/null
 
     # sometimes, assets are not reachable. start webinterface and check if they are.
-    while [ $(curl 192.168.42.1/static/js/pravdabox.js | wc -l) -lt 2 ]; do
+    while [ $(curl 192.168.42.1/static/combined.js | wc -l) -lt 2 ]; do
         killall webinterface-bin
         /opt/pravdabox/webinterface-bin -l 192.168.42.1:80 &> /dev/null &
         sleep 1
