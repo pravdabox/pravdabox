@@ -1,7 +1,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=geolocation
-PKG_VERSION:=0.4.1
+PKG_VERSION:=0.4.2
 PKG_RELEASE:=1
 
 include $(INCLUDE_DIR)/package.mk
@@ -10,7 +10,7 @@ define Package/geolocation
   SECTION:=administration
   CATEGORY:=Pravdabox
   TITLE:=Pravdabox Geolocation Database
-  DEPENDS:=+mysql-server +xz
+  DEPENDS:=+mysql-server +xz-utils +xz
 endef
 
 define Package/geolocation/description
