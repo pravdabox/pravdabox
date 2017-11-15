@@ -16,8 +16,8 @@ start() {
     /usr/sbin/iptables -A POSTROUTING -t nat -o eth2 -j MASQUERADE
 
     # don't allow client to access pravdabox web interface
-    /usr/sbin/iptables -A INPUT -i eth2 -p udp --dport 53 -j ACCEPT
-    /usr/sbin/iptables -A INPUT -i eth2 -j REJECT
+    /usr/sbin/iptables -A INPUT -i eth0 -p udp --dport 53 -j ACCEPT
+    /usr/sbin/iptables -A INPUT -i eth0 -j REJECT
 
     # stop dnsmasq
     /etc/init.d/dnsmasq stop
